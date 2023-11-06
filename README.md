@@ -10,6 +10,7 @@ We expect related words or words with similar meaning to be used in similar cont
 
 Sentence embeddings are like puzzles made up of word vectors. When we form a sentence, we combine the individual word vectors in a specific way to create a new vector that represents the entire sentence. This combined vector captures the overall meaning and context of the sentence by taking into account the relationships between the words.
 ![image](https://github.com/htao00/NLP_similar_interests/assets/16727807/68e6f07b-6f1b-40ce-b389-798a30fd03bc)
+
 In the image above [2], SIF (smooth inverse frequency)[3] refers to a sentence embedding method that combines word embeddings to calculate the sentence embedding.
 
 The closer the vectors are, the more similar the words or sentences are in meaning. So, word and sentence embeddings are like a bridge that helps computers make sense of our words and language.
