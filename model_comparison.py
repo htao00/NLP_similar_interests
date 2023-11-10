@@ -81,7 +81,7 @@ def main():
 
     plt.figure(figsize=(14, 7))
     plt.title('Model Rank Comparisons with all-MiniLM-L6-v2')
-    comparisons_df[['Model', 'Correlation', 'PValue', 'Rank Diplace10+', 'Rank Displace5-']].to_csv('Model_Comparisons_with_ALL_MPNET_BASE_V2.csv', index=False, encoding='utf-8')
+    comparisons_df[['Model', 'Correlation', 'PValue', 'Rank Diplace10+', 'Rank Displace5-']].to_csv('Model_Comparisons_with_MINILM_L6_V2.csv', index=False, encoding='utf-8')
     box_plot_df = pd.DataFrame(columns=comparisons_df['Model'].str.split('/').str[1])
     box_plot_df['all-mpnet-base-v2'] = comparisons_df.iloc[0, -1]
     box_plot_df['all-distilroberta-v1'] = comparisons_df.iloc[1, -1]
