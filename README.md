@@ -41,7 +41,7 @@ In this expriment, we are testing how different transformer models affect our ou
 
 As shown, all models have high correlation with our base model, with all-mpnet-base-v2 performs most differently from our base model with correlation of 0.728. This suggests that model embedding could be a significant factor in our task performance. We can demonstrate this further with the following analysis.
 
-<img width="832" alt="Screenshot 2023-11-10 at 12 58 43" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/273a5ef4-1896-4c0b-b264-ef5f45b82ebc">
+<img width="823" alt="Screenshot 2023-11-10 at 13 35 36" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/5fe8c45c-92af-4e8c-8650-bda9f115dd58">
 
 Here we rank order people with the most similar interests as me (Haodong Tao) based on their description's cosine similarity score and calculate the difference in ranking. Then we count the number of people ranked 10 places or greater apart when comparing two embedding models (this difference is enough to displace the number 1 position out of top 10), therefore the higher this count is, the greater the difference in model performance. We also count the number of people ranked within 5 places apart between two models (this means a top 1 position would still be within the top 5), therefore, the higher this count is, the more similar in model performance. As we can see, the counts corresponds to the models' spearman correlations.
 
