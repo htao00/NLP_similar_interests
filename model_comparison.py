@@ -93,39 +93,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# # draw graph
-# plt.figure(figsize=(20, 10))
-
-# plt.subplot(2, 1, 1)
-# plt.scatter(x, cosine_diff, s=8)
-# plt.axhline(y=0, color="red", linestyle="-")
-# plt.tick_params(axis="x", bottom=False, labelbottom=False)
-# plt.ylabel("Cosine Difference")
-# for i in range(len(top_matches_1)):
-#     plt.annotate(top_matches_1[i][0][:6], (x[i], cosine_diff[i]), fontsize="8")
-
-# plt.subplot(2, 1, 2)
-# plt.scatter(x, rank_diff, s=8)
-# plt.axhline(y=0, color="red")
-# plt.tick_params(axis="x", bottom=False, labelbottom=False)
-# plt.ylabel("Ranks gained")
-# for i in range(len(top_matches_1)):
-#     plt.annotate(top_matches_1[i][0][:6], (x[i], rank_diff[i]), fontsize="8")
-
-# plt.suptitle(
-#     f"Difference in cosine similarity and ranking of everyone vs {target_person} between {model_name_1} and {model_name_2}",
-#     size=16,
-# )
-# plt.show()
-
-
-
-
-
-# def main():
-#     compare_models(C.FILE_NAME, C.MINILM_L6_V2, C.ALL_MPNET_BASE_V2, "Greg Kirczenow")
-
-
-# if __name__ == "__main__":
-#     main()
