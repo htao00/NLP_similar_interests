@@ -1,0 +1,5 @@
+Model,Correlation,PValue,Rank Diplace10+,Rank Displace5-
+sentence-transformers/all-mpnet-base-v2,0.727909160761547,9.703924341555412e-10,16,21
+sentence-transformers/all-distilroberta-v1,0.909246136771109,1.1429952678888964e-20,7,31
+sentence-transformers/all-MiniLM-L12-v2,0.9142832749935967,2.913214284650885e-21,5,28
+sentence-transformers/paraphrase-albert-small-v2,0.8721932895073848,3.799176590500009e-17,11,24
