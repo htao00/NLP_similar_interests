@@ -34,6 +34,29 @@ And for Greg and Tao's:
 
 The results from the cosine similarity test largely corresponds with their placements on the plot above. Expectedly, replacing whole sentence have the highest impact on similarity with both Greg and Tao's modifications scoring near 0 on cosine similarity scale; replacing with synonyms had the least impact with all of Nikita's synonym modifications scoring near the 0.9 mark. Interestingly, we see that using antonyms does not have a large impact on the sentence similarities, yet, the sentences have the opposite meaning. Therefore, using this model, people with opposite interests would be placed close together. Note that while Nikita_opposite2 has a higher similarity score than Tao_mod and Greg_mod, it is placed further away from its original on the visualization plot. This is likely more to do with UMAP's dimensionality reduction mechanism. In general, on the plot, sentences with similar meaning is placed closer together than sentences that are not.
 
+## Embedding Sensitivity Tests
+In this expriment, we are testing how different transformer models affect our outcome of finding people with similar interests as me (Haodong Tao). We calculate the embedding similarities of 4 other transformer models (all-mpnet-base-v2, all-distilroberta-v1, all-MiniLM-L12-v2, paraphrase-albert-small-v2) and calculate the spearman's correlation with our base model (all-MiniLM-L6-v2). We also rank order the people with closest descriptions to mine for all models and calculate the rank differences. The results are as follows.
+
+![model_comparisons](https://github.com/htao00/NLP_similar_interests/assets/16727807/5e23166b-1a30-46c7-89f4-a4e06706558e)
+
+As shown, all models have high correlation with our base model, with all-mpnet-base-v2 performs most differently from our base model with correlation of 0.728. This suggests that model embedding could be a significant factor in our task performance. We can demonstrate this further with the following analysis.
+
+<img width="832" alt="Screenshot 2023-11-10 at 12 58 43" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/273a5ef4-1896-4c0b-b264-ef5f45b82ebc">
+
+Here we rank order people with the most similar interests as me (Haodong Tao) based on their description's cosine similarity score and calculate the difference in ranking. Then we count the number of people ranked 10 places or greater apart when comparing two embedding models (this difference is enough to displace the number 1 position out of top 10), therefore the higher this count is, the greater the difference in model performance. We also count the number of people ranked within 5 places apart between two models (this means a top 1 position would still be within the top 5), therefore, the higher this count is, the more similar in model performance. As we can see, the counts corresponds to the models' spearman correlations.
+
+We can also visualize ranking differences with the following boxplot:
+
+![model_rank_comparisons_with_all-MiniLM-L6-v2](https://github.com/htao00/NLP_similar_interests/assets/16727807/5bada166-470d-4274-b525-bb9c6bbabd07)
+
+Lastly we can take a closer look at the top 5 people who's descriptions are the most similar to mine in all models:
+<img width="1023" alt="Screenshot 2023-11-10 at 13 11 50" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/4e2b47a4-1aa2-4280-8353-f5433df2a186">
+<img width="1019" alt="Screenshot 2023-11-10 at 13 13 35" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/2592b216-65e1-4741-8ddb-fc0a1e1283e8">
+<img width="1050" alt="Screenshot 2023-11-10 at 13 14 12" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/4e92c784-b470-497c-b10a-fa93cdcb7716">
+<img width="1062" alt="Screenshot 2023-11-10 at 13 14 47" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/78c514e8-1b54-4470-9860-22178831a37f">
+<img width="1028" alt="Screenshot 2023-11-10 at 13 15 21" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/1dcbeecf-0bc3-4060-bbcb-4e07c28ca3d9">
+
+
 ## References
 1. Nilesh Barla, MLOps Blog: The Ultimate Guide to Word Embeddings, Neptune AI, 2023
    https://neptune.ai/blog/word-embeddings-guide
