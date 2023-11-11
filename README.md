@@ -56,6 +56,25 @@ Lastly we can take a closer look at the top 5 people who's descriptions are the 
 <img width="1062" alt="Screenshot 2023-11-10 at 13 14 47" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/78c514e8-1b54-4470-9860-22178831a37f">
 <img width="1028" alt="Screenshot 2023-11-10 at 13 15 21" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/1dcbeecf-0bc3-4060-bbcb-4e07c28ca3d9">
 
+## UMAP Hyperparameter Tuning
+We discussed briefly in the Data Analysis section about how UMAP's dimensionality reduction mechanism can affect our visualization. Here we will try to optimize UMAP hyperparamters inorder to more accurately reflect our interest rank order. First lets take a look at the pre-tuned correlation between cosine distance rank order and the euclidean distance drawn on the UMAP plot.
+![pretuned_cosine_euclid_corr](https://github.com/htao00/NLP_similar_interests/assets/16727807/97247e2f-4b45-4090-bd14-db5f3fc1973f)
+
+As shown, the correlation is about 3.8. Let's see if we can improve it using Optuna hyperparameter tuning optimizing for better correlation between the cosine distance and euclidian distance. Here we will optimize three parameters that affect visualization: n_neighbors, min_dist, and metric. Information about these parameters can be found in the UMAP documentation [4]. Briefly, N_neighbors controls how UMAP balances local versus global structure in the data; low values of n_neighbors will force UMAP to concentrate on very local structure. Min_dist controls how tightly UMAP is allowed to pack points together. It, quite literally, provides the minimum distance apart that points are allowed to be in the low dimensional representation. Metric controls how distance is computed in the ambient space of the input data; the default metric is 'euclidean', but also available are 'cosine' and many others. Here we will from three metrics euclidean, cosine, and manhattan.
+
+After running 100 trials, we get the following results.
+<img width="907" alt="Screenshot 2023-11-10 at 20 22 29" src="https://github.com/htao00/NLP_similar_interests/assets/16727807/2589970c-8ef4-43f1-99c3-466a7ecfb83c">
+
+We have improved the spearmanr from 0.38 to 0.52, a significant improvement. Here is the tuned correlation plot:
+![tuned_cosine_euclid_corr](https://github.com/htao00/NLP_similar_interests/assets/16727807/cc10359e-ede9-4751-b7e1-c4197b7991e8)
+
+We can also compare the UMAP plots to see that after tuning, the plot looks different.
+Here is the pretuned plot:
+![umap_untuned](https://github.com/htao00/NLP_similar_interests/assets/16727807/188656c6-e865-452c-8f90-9bfdbe855be1)
+VS the tuned plot:
+![umap_tuned](https://github.com/htao00/NLP_similar_interests/assets/16727807/b3f88d3e-ac5e-4a5a-9d3f-4d9c2c91c2c5)
+
+It's interesting to note that while the tuned plot has higher correlation between interest rank and the euclidean distance, it also appears less clustered. This is actually makes for a worse visualization since stronger clustering gives better visual information on which people have similar interests.
 
 ## References
 1. Nilesh Barla, MLOps Blog: The Ultimate Guide to Word Embeddings, Neptune AI, 2023
@@ -64,4 +83,5 @@ Lastly we can take a closer look at the top 5 people who's descriptions are the 
    https://engineering.talkdesk.com/what-are-sentence-embeddings-and-why-are-they-useful-53ed370b3f35
 3. Sanjeev Arora et al., A SIMPLE BUT TOUGH-TO-BEAT BASELINE FOR SENTENCE EMBEDDINGS, ICLR 2017
    https://openreview.net/pdf?id=SyK00v5xx
-4. 
+4. Basic UMAP parameters, UMAP Learn
+   https://umap-learn.readthedocs.io/en/latest/parameters.html
