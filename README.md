@@ -74,7 +74,7 @@ Here is the pretuned plot:
 VS the tuned plot:
 ![umap_tuned](https://github.com/htao00/NLP_similar_interests/assets/16727807/b3f88d3e-ac5e-4a5a-9d3f-4d9c2c91c2c5)
 
-It's interesting to note that while the tuned plot has higher correlation between interest rank and the euclidean distance, it also appears less clustered. This is actually makes for a worse visualization since stronger clustering gives better visual information on which people have similar interests.
+It's interesting to note that while the tuned plot has higher correlation between interest rank and the euclidean distance, it also appears less clustered. This actually makes for a worse visualization since stronger clustering gives better visual information on which people have similar interests.
 
 ## References
 1. Nilesh Barla, MLOps Blog: The Ultimate Guide to Word Embeddings, Neptune AI, 2023
