@@ -52,7 +52,7 @@ def sentence_embedding(model: SentenceTransformer, people: dict) -> dict:
     return person_embeddings
 
 
-def dimension_reduction(person_embeddings: dict, n_neighbors: int, min_dist: float, random_state: int) -> dict:
+def dimension_reduction(person_embeddings: dict, n_neighbors: int, min_dist: float, random_state: int, metric:str ='euclidean') -> dict:
     """
     Return UMAP vectors
 
@@ -66,7 +66,7 @@ def dimension_reduction(person_embeddings: dict, n_neighbors: int, min_dist: flo
     umap_dict: dict{str: list[float]}
         dictionary {name: umap_vector}
     """
-    umap_model = umap.UMAP(n_neighbors=n_neighbors, min_dist=min_dist, random_state=random_state)
+    umap_model = umap.UMAP(n_neighbors=n_neighbors, min_dist=min_dist, random_state=random_state, metric=metric)
     umap_vectors = umap_model.fit_transform(list(person_embeddings.values()))
 
     umap_dict = {}

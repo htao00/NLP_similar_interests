@@ -51,13 +51,13 @@ class MatchMaker:
         return self.embeddings
 
     def dimension_reduction(
-        self, n_neighbors: int = 15, min_dist: float = 0.1, random_state: int = C.RANDOM_STATE
+        self, n_neighbors: int = 15, min_dist: float = 0.1, random_state: int = C.RANDOM_STATE, metric: str ='euclidean'
     ) -> list:
         """
         Dimension reduction using tools such as UMAP.
         """
         warnings.simplefilter("ignore")
-        self.dim_reduced_embeddings = U.dimension_reduction(self.embeddings, n_neighbors, min_dist, random_state)
+        self.dim_reduced_embeddings = U.dimension_reduction(self.embeddings, n_neighbors, min_dist, random_state, metric)
         return self.dim_reduced_embeddings
 
     def visualization(self, image_file_name: str = None):
